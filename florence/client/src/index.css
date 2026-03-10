@@ -1,0 +1,510 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Global Resets & Design Tokens ===== */
+:root {
+  --navy: #0B1F3A;
+  --gold: #C9A84C;
+  --gold-light: #E8C96D;
+  --white: #FFFFFF;
+  --gray-light: #F5F7FA;
+  --gray-mid: #E2E8F0;
+  --text-dark: #1A202C;
+  --text-muted: #64748B;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text-dark);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== Scrollbar Styling ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--navy);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-light);
+}
+
+/* ===== Selection ===== */
+::selection {
+  background: rgba(201, 168, 76, 0.3);
+  color: var(--navy);
+}
+
+/* ===== Utility Classes ===== */
+.gold-glow {
+  box-shadow: 0 8px 32px rgba(201, 168, 76, 0.25);
+}
+
+.card-shadow {
+  box-shadow: 0 4px 24px rgba(11, 31, 58, 0.10);
+}
+
+/* ===== Section label with gold left border ===== */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.section-label::before {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 1.25rem;
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+/* ===== Animated underline for headings ===== */
+.heading-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.heading-underline::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+/* ===== Particles background ===== */
+.particles-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(201, 168, 76, 0.2);
+  border-radius: 50%;
+  animation: particleFloat 8s ease-in-out infinite;
+}
+
+@keyframes particleFloat {
+
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(-100px) translateX(30px);
+    opacity: 0.6;
+  }
+}
+
+/* ===== Gold line draw animation ===== */
+@keyframes drawLine {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* ===== Gradient text utility ===== */
+.text-gradient-gold {
+  background: linear-gradient(135deg, #C9A84C, #E8C96D);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== Global Dashboard Specifics ===== */
+@keyframes dashboardPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+.dashboard-pulse {
+  animation: dashboardPulse 2s infinite ease-out;
+}
+
+@keyframes drawDashboardLine {
+  from {
+    stroke-dashoffset: 1000;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.dashboard-line {
+  stroke-dasharray: 1000;
+  animation: drawDashboardLine 3s ease-out forwards;
+}
+
+.delay-0 {
+  animation-delay: 0s;
+}
+
+.delay-1 {
+  animation-delay: 0.5s;
+}
+
+.delay-2 {
+  animation-delay: 1s;
+}
+
+.delay-3 {
+  animation-delay: 1.5s;
+}
+
+.delay-4 {
+  animation-delay: 2s;
+}
+
+/* Dashboard Particle Flow & Spinners */
+@keyframes particleFlow {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+.dashboard-particle-flow {
+  animation: particleFlow 2s linear infinite;
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg) scale(1.1);
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: rotate(180deg) scale(1);
+    opacity: 0.2;
+  }
+
+  to {
+    transform: rotate(360deg) scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+@keyframes spinReverseSlow {
+  from {
+    transform: rotate(0deg) scale(0.9);
+    opacity: 0.2;
+  }
+
+  50% {
+    transform: rotate(-180deg) scale(1);
+    opacity: 0.8;
+  }
+
+  to {
+    transform: rotate(-360deg) scale(0.9);
+    opacity: 0.2;
+  }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 4s linear infinite;
+}
+
+.animate-spin-reverse-slow {
+  animation: spinReverseSlow 5s linear infinite;
+}
+
+/* ===== Animated Gradient Orb ===== */
+@keyframes orbFloat {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.4;
+  }
+
+  25% {
+    transform: translate(30px, -50px) scale(1.1);
+    opacity: 0.6;
+  }
+
+  50% {
+    transform: translate(-20px, -80px) scale(0.95);
+    opacity: 0.5;
+  }
+
+  75% {
+    transform: translate(40px, -30px) scale(1.05);
+    opacity: 0.55;
+  }
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  animation: orbFloat 12s ease-in-out infinite;
+}
+
+.orb-gold {
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.4) 0%, rgba(201, 168, 76, 0) 70%);
+}
+
+.orb-teal {
+  background: radial-gradient(circle, rgba(0, 78, 100, 0.3) 0%, rgba(0, 78, 100, 0) 70%);
+}
+
+.orb-blue {
+  background: radial-gradient(circle, rgba(26, 58, 110, 0.3) 0%, rgba(26, 58, 110, 0) 70%);
+}
+
+/* ===== Shimmer / Shine sweep on text ===== */
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.text-shimmer {
+  background: linear-gradient(90deg,
+      #C9A84C 0%,
+      #E8C96D 25%,
+      #FFF8DC 50%,
+      #E8C96D 75%,
+      #C9A84C 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+/* ===== Pulsing Glow Ring ===== */
+@keyframes pulseGlow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(201, 168, 76, 0.15), 0 0 60px rgba(201, 168, 76, 0.05);
+    transform: scale(1);
+  }
+
+  50% {
+    box-shadow: 0 0 40px rgba(201, 168, 76, 0.3), 0 0 100px rgba(201, 168, 76, 0.1);
+    transform: scale(1.02);
+  }
+}
+
+.pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* ===== Floating decoration ===== */
+@keyframes floatSlow {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-20px) rotate(3deg);
+  }
+}
+
+@keyframes floatMedium {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-15px) rotate(-2deg);
+  }
+}
+
+@keyframes floatFast {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.float-slow {
+  animation: floatSlow 8s ease-in-out infinite;
+}
+
+.float-medium {
+  animation: floatMedium 6s ease-in-out infinite;
+}
+
+.float-fast {
+  animation: floatFast 4s ease-in-out infinite;
+}
+
+/* ===== Animated gradient border ===== */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-gradient-border {
+  position: relative;
+  overflow: hidden;
+}
+
+.animated-gradient-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #C9A84C, #E8C96D, #C9A84C, transparent);
+  background-size: 200% 100%;
+  animation: gradientMove 3s ease infinite;
+}
+
+/* ===== Rotating diamond decoration ===== */
+@keyframes rotateDiamond {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.rotating-diamond {
+  animation: rotateDiamond 20s linear infinite;
+}
+
+/* ===== Staggered fade-in for sequential children ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Scroll-triggered glow line ===== */
+@keyframes glowLine {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    width: 100%;
+    opacity: 0.6;
+  }
+}
+
+/* ===== Marquee for scrolling text ===== */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
